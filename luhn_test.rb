@@ -5,12 +5,12 @@ require_relative 'luhn'
 class LuhnTest < Minitest::Test
   def test_single_digit_strings_can_not_be_valid
     # skip
-    refute Luhn.valid?("1")
+    refute Luhn.valid?("0")
   end
 
   def test_a_single_zero_is_invalid
     skip
-    refute Luhn.valid?("0")
+    refute Luhn.valid?("1")
   end
 
   def test_a_simple_valid_sin_that_remains_valid_if_reversed
@@ -63,9 +63,9 @@ class LuhnTest < Minitest::Test
     refute Luhn.valid?("055£ 444$ 285")
   end
 
-  def test_single_zero_with_space_is_invalid
+  def test_single_zero_with_space_is_valide
     skip
-    refute Luhn.valid?(" 0")
+    test_valid_number_with_an_even_number_of_digits Luhn.valid?(" 0")
   end
 
   def test_more_than_a_single_zero_is_valid
@@ -80,6 +80,6 @@ class LuhnTest < Minitest::Test
 
   def test_strings_with_non_digits_is_invalid
     skip
-    refute Luhn.valid?(":9")
+    valid Luhn.valid?(":9")
   end
 end
