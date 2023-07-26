@@ -45,4 +45,35 @@ jobs:
         gem build *.gemspec
         gem push *.gem
       env:
-        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
+        GEM_HOST_API_KEY : "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
+- nom : téléchargez un artefact de construction
+
+  utilise : actions/upload-artifact@v3.1.2
+
+  avec:
+
+    # Nom de l'artefact
+
+    nom : # facultatif, la valeur par défaut est l'artefact
+
+    # Un fichier, un répertoire ou un modèle générique qui décrit ce qu'il faut télécharger
+
+    chemin:
+
+    # Le comportement souhaité si aucun fichier n'est trouvé en utilisant le chemin fourni.
+
+Options disponibles:
+
+  warn : affiche un avertissement mais n'échoue pas l'action
+
+  erreur : Échec de l'action avec un message d'erreur
+
+  ignore : ne génère aucun avertissement ou erreur, l'action n'échoue pas
+
+    if-no-files-found : # facultatif, la valeur par défaut est warn
+
+    # Durée après laquelle l'artefact expirera en jours. 0 signifie utiliser la rétention par défaut.
+
+Au moins 1 jour. Maximum 90 jours sauf modification depuis la page des paramètres du référentiel.
+
+    jours de rétention : # facultatif
